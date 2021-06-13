@@ -1,6 +1,6 @@
 #+title: zprint.el
 
-zprint is a library and command line tool providing a variety of pretty printing capabilities for both Clojure code and Clojure/EDN structures.
+[[https://github.com/kkinnear/zprint][zprint]] is a library and command line tool providing a variety of pretty printing capabilities for both Clojure code and Clojure/EDN structures.
 zprint.el use zprint binary to reformat Clojure code buffer very efficiently.
 
 * Why another implementation
