@@ -1,0 +1,23 @@
+#+title: zprint.el
+
+zprint is a library and command line tool providing a variety of pretty printing capabilities for both Clojure code and Clojure/EDN structures.
+zprint.el use zprint binary to reformat Clojure code buffer very efficiently.
+
+* Why another implementation
+There is an available implementation called [[https://github.com/pesterhazy/zprint-mode.el][zprint-mode.el]] . Differences in this implementation:
+- Always reformat the whole buffer, doesn't support region-based reformat.
+- Don't create temp file in procedure.
+- No binary download management, doesn't limit to a specified version.
+- No Python needed.
+- Simpler implementation.
+
+* Usage
+** manually format via shortcut
+#+begin_src emacs-lisp
+  (define-key clojure-mode-map (kbd "C-c p") 'zprint)
+#+end_src
+
+** automatically format before save buffer
+#+begin_src emacs-lisp
+  (add-hook 'clojure-mode-hook 'zprint-mode)
+#+end_src
