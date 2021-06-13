@@ -47,12 +47,14 @@
   "Reformat code using zprint."
   (interactive)
   (let* ((contents (buffer-string))
+         (orig-buf (current-buffer))
          (ln (line-number-at-pos (point) t))
          (col (- (point) (line-beginning-position)))
          (formatted-contents
           (with-temp-buffer
             (insert contents)
-            (let ((retcode (call-process-region
+            (let ((buf (current-buffer))
+                  (retcode (call-process-region
                             (point-min)
                             (point-max)
                             zprint-bin-path
@@ -60,13 +62,9 @@
                             (current-buffer)
                             nil)))
               (if (zerop retcode)
-                  (buffer-string)
-                (error "zprint failed: %s" (string-trim-right (buffer-string))))))))
-    (erase-buffer)
-    (insert formatted-contents)
-    (goto-char (point-min))
-    (forward-line (1- ln))
-    (forward-char col)))
+                  (with-current-buffer orig-buf
+                    (replace-buffer-contents buf))
+                (error "zprint failed: %s" (string-trim-right (buffer-string))))))))))
 
 (define-minor-mode zprint-mode
   "Format code before save."
