@@ -1,7 +1,7 @@
 ;;; zprint.el --- Zprint in Emacs  -*- lexical-binding: t; -*-
 
 ;; Author: Shi Tianshu
-;; Keywords: convenience, modal-editing
+;; Keywords: clojure
 ;; Package-Requires: ((emacs "27.1"))
 ;; Version: 0.0.1
 ;; URL: https://www.github.com/DogLooksGood/zprint.el
@@ -66,6 +66,7 @@
                     (replace-buffer-contents buf))
                 (error "zprint failed: %s" (string-trim-right (buffer-string))))))))))
 
+;;;###autoload
 (define-minor-mode zprint-mode
   "Format code before save."
   :lighter zprint-lighter
@@ -74,3 +75,4 @@
     (remove-hook 'before-save-hook 'zprint t)))
 
 (provide 'zprint)
+;;; zprint.el ends here
