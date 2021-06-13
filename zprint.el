@@ -48,8 +48,6 @@
   (interactive)
   (let* ((contents (buffer-string))
          (orig-buf (current-buffer))
-         (ln (line-number-at-pos (point) t))
-         (col (- (point) (line-beginning-position)))
          (formatted-contents
           (with-temp-buffer
             (insert contents)
